@@ -8,6 +8,27 @@ class Polynomial {
         this->degCoeff=new int[6];
         this->capacity=5;
     }
+    Polynomial (int capacity){
+        this->degCoeff=new int[capacity+1];
+        this->capacity=capacity;
+    }
+    Polynomial operator+(Polynomial const &P2){
+
+        int newcap=max(this->capacity,P2.capacity);
+
+        Polynomial P3(newcap);
+
+        for(int i=0;i<=newcap;i++){
+            if(i<=capacity && i<=P2.capacity)
+                P3.degCoeff[i]=this->degCoeff[i]+P2.degCoeff[i];
+            else if(i<=capacity)
+                P3.degCoeff[i]=this->degCoeff[i];
+            else
+                P3.degCoeff[i]=P2.degCoeff[i];
+        }
+
+        return P3;
+    }
     Polynomial operator-(Polynomial const &P2){
 
         int newcap=max(this->capacity,P2.capacity);
