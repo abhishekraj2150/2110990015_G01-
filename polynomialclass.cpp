@@ -9,8 +9,34 @@ class Polynomial {
         this->capacity=5;
     }
    
+   
+ 
+  Polynomial operator*(Polynomial const &P2){
+        
+        int newcap=this->capacity+P2.capacity;
+        Polynomial P3(newcap);
+        
+        for(int i=0;i<=this->capacity;i++){
+            
+            for(int j=0;j<=P2.capacity;j++){
+                P3.degCoeff[i+j]+=this->degCoeff[i]*P2.degCoeff[j];
+            }
+        }
+        return P3;
+    }
     
-    
+    void operator=(Polynomial const &p){
+        int *newdeg=new int[p.capacity+1];
+        //Copy the contents
+        for(int i=0;i<p.capacity;i++)
+            newdeg[i]=p.degCoeff[i];
+            
+        
+        this->degCoeff=newdeg;
+        
+        this->capacity=p.capacity;
+    }
+      
     
     
     
